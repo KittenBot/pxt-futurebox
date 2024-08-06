@@ -37,6 +37,24 @@ declare namespace pins {
 namespace futurebox {
     const DA213ADDR = 39;
 
+    export enum Port {
+        //% block="P1"
+        P1 = 4,
+        //% block="P2"
+        P2 = 7,
+        //% block="P3"
+        P3 = 5,
+        //% block="P4"
+        P4 = 6,
+    }
+    export enum Motor {
+        //% block="M1"
+        M1 = 1,
+        //% block="M2"
+        M2 = 2,
+    }
+
+
     //% blockId=futurebox_pixel block="Pixel"
     export function onboardPixel() {
         let s = light.createNeoPixelStrip(pins.RGB, 3)
@@ -73,22 +91,29 @@ namespace futurebox {
         return [x, y, z]
     }
 
-    
+    //% blockId=futurebox_motor block="Motor %motor|speed %speed"
+    //% speed.min=-255 speed.max=255
+    export function motorRun(motor: Motor, speed: number) {
+        let p1 = 14
+        let p2 = 13
+        if (motor == Motor.M2) {
+            p1 = 47
+            p2 = 21
+        }
+        if (speed >= 0) {
+            pins.analogWritePin(p1, speed * 16) // 256 > 4096
+            pins.analogWritePin(p2, 0)
+        } else {
+            pins.analogWritePin(p1, 0)
+            pins.analogWritePin(p2, -speed * 16)
+        }
+    }
 
-}
-declare const enum Port {
-    //% block="P1"
-    P1 = 4,
-    //% block="P2"
-    P2 = 7,
-    //% block="P3"
-    P3 = 5,
-    //% block="P4"
-    P4 = 6,
-}
-declare const enum Motor {
-    //% block="M1"
-    M1 = 1,
-    //% block="M2"
-    M2 = 2,
+    //% blockId=futurebox_geekservo block="Servo %port|angle %angle"
+    //% angle.min=0 angle.max=180
+    export function geekServo(port: Port, angle: number) {
+        let v_us = (angle - 90) * 20 / 3 + 1500
+        pins.servoSetPulse(port, v_us)
+    }
+
 }
