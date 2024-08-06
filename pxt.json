@@ -4,19 +4,19 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "light": "*",
-        "edge-connector": "*"
+        "light": "*"
     },
     "files": [
         "README.md",
-        "main.ts"
+        "futurebox.ts",
+        "pins.ts"
     ],
     "testFiles": [
         "test.ts"
     ],
     "public": true,
     "targetVersions": {
-        "target": "2.0.3",
+        "target": "1.12.55",
         "targetId": "arcade"
     },
     "supportedTargets": [
