@@ -3,8 +3,7 @@
     "version": "0.0.0",
     "description": "",
     "dependencies": {
-        "device": "*",
-        "light": "*"
+        "device": "*"
     },
     "files": [
         "README.md",
