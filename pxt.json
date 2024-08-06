@@ -9,7 +9,6 @@
     },
     "files": [
         "README.md",
-        "main.blocks",
         "main.ts"
     ],
     "testFiles": [
@@ -17,7 +16,7 @@
     ],
     "public": true,
     "targetVersions": {
-        "target": "1.12.55",
+        "target": "2.0.3",
         "targetId": "arcade"
     },
     "supportedTargets": [

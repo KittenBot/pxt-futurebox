@@ -7,72 +7,6 @@ declare namespace pins {
     const DUMMY: DigitalInOutPin;
 
     /**
-     * Read `size` bytes from a 7-bit I2C `address`.
-     */
-    //% shim=pins::i2cReadBuffer
-    // function i2cReadBuffer(address: int32, size: int32, repeat?: boolean): Buffer;
-
-    /**
-     * Write bytes to a 7-bit I2C `address`.
-     */
-    //% shim=pins::i2cWriteBuffer
-    // function i2cWriteBuffer(address: int32, buf: Buffer, repeat?: boolean): int32;
-
-
-    /**
-     * Read the specified pin or connector as either 0 or 1
-     * @param name pin to read from, eg: DigitalPin.P0
-     */
-    //% help=pins/digital-read-pin weight=30
-    //% blockId=device_get_digital_pin block="digital read|pin %name" blockGap=8
-    //% name.shadow=digital_pin shim=pins::digitalReadPin
-    // function digitalReadPin(name: int32): int32;
-
-    /**
-     * Set a pin or connector value to either 0 or 1.
-     * @param name pin to write to, eg: DigitalPin.P0
-     * @param value value to set on the pin, 1 eg,0
-     */
-    //% help=pins/digital-write-pin weight=29
-    //% blockId=device_set_digital_pin block="digital write|pin %name|to %value"
-    //% value.min=0 value.max=1
-    //% name.shadow=digital_pin shim=pins::digitalWritePin
-    // function digitalWritePin(name: int32, value: int32): void;
-
-    /**
-     * Read the connector value as analog, that is, as a value comprised between 0 and 1023.
-     * @param name pin to write to, eg: AnalogPin.P0
-     */
-    //% help=pins/analog-read-pin weight=25
-    //% blockId=device_get_analog_pin block="analog read|pin %name" blockGap="8"
-    //% name.shadow=analog_pin shim=pins::analogReadPin
-    // function analogReadPin(name: int32): int32;
-
-    /**
-     * Set the connector value as analog. Value must be comprised between 0 and 1023.
-     * @param name pin name to write to, eg: AnalogPin.P0
-     * @param value value to write to the pin between ``0`` and ``1023``. eg:1023,0
-     */
-    //% help=pins/analog-write-pin weight=24
-    //% blockId=device_set_analog_pin block="analog write|pin %name|to %value" blockGap=8
-    //% value.min=0 value.max=1023
-    //% name.shadow=analog_pin shim=pins::analogWritePin
-    // function analogWritePin(name: int32, value: int32): void;
-
-    /**
-     * Configure the pull direction of of a pin.
-     * @param name pin to set the pull mode on, eg: DigitalPin.P0
-     * @param pull one of the mbed pull configurations, eg: PinPullMode.PullUp
-     */
-    //% help=pins/set-pull advanced=true
-    //% blockId=device_set_pull block="set pull|pin %pin|to %pull"
-    //% pin.shadow=digital_pin
-    //% group="Pins"
-    //% weight=15
-    //% blockGap=8 shim=pins::setPull
-    // function setPull(name: int32, pull: PinPullMode): void;
-
-    /**
      * Configure the pulse-width modulation (PWM) period of the analog output in microseconds.
      * If this pin is not configured as an analog output (using `analog write pin`), the operation has no effect.
      * @param name analog pin to set period to, eg: AnalogPin.P0
@@ -95,6 +29,7 @@ declare namespace pins {
     function servoSetPulse(name: int32, micros: int32): void;
 
 }
+
 namespace futurebox {
     const DA213ADDR = 39;
 
