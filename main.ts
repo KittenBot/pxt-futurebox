@@ -30,15 +30,21 @@ declare namespace pins {
 
 }
 
+/**
+ * futurebox lib support
+ */
+//% weight=70 color=#ec7505 icon="\uf1da"
 namespace futurebox {
     const DA213ADDR = 39;
 
+    //% blockId=futurebox_pixel block="Pixel"
     export function onboardPixel() {
         let s = light.createNeoPixelStrip(pins.RGB, 3)
         s._clkPin = pins.DUMMY
         return s
     }
 
+    //% blockId=futurebox_initimu block="Imu init"
     export function initImu() {
         // init da213
         const DA213ADDR2 = 39
@@ -57,6 +63,7 @@ namespace futurebox {
         pins.i2cWriteRegister(DA213ADDR2, 0x15, 0x04)
     }
 
+    //% blockId=futurebox_readimu block="Read Imu"
     export function readImu() {
         pins.i2cWriteNumber(DA213ADDR, 0x02, NumberFormat.UInt8LE);
         let data = pins.i2cReadBuffer(DA213ADDR, 6);
@@ -65,6 +72,8 @@ namespace futurebox {
         let z = data.getNumber(NumberFormat.Int16LE, 4)
         return [x, y, z]
     }
+
+    
 
 }
 declare const enum Port {
